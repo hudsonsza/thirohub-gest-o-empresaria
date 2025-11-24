@@ -1,0 +1,16 @@
+{
+  "query": "SELECT id, email, name, passwordHash FROM adminUsers WHERE email = 'Thiagor.oliveira.profissional@gmail.com'",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rkLhd3unkR3ru9.4580a0f561b7 --database GHR3zrLANgGxQTdejEBqxn --execute SELECT id, email, name, passwordHash FROM adminUsers WHERE email = 'Thiagor.oliveira.profissional@gmail.com'",
+  "rows": [
+    {
+      "id": "1",
+      "email": "Thiagor.oliveira.profissional@gmail.com",
+      "name": "Thiago Rodrigues",
+      "passwordHash": "$2b$10$hwwOhhasUXpu2T3KIWQ4tuybEY6Nipu6cEs4xqLv7OkjNQtIiebFa"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\tname\tpasswordHash\n1\tThiagor.oliveira.profissional@gmail.com\tThiago Rodrigues\t$2b$10$hwwOhhasUXpu2T3KIWQ4tuybEY6Nipu6cEs4xqLv7OkjNQtIiebFa\n",
+  "stderr": "",
+  "execution_time_ms": 248
+}

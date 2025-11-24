@@ -1,0 +1,38 @@
+{
+  "query": "SELECT id, storeId, email, LEFT(passwordHash, 20) as hash_preview, lastLoginAt FROM storeSessions ORDER BY id DESC LIMIT 5",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rkLhd3unkR3ru9.4580a0f561b7 --database GHR3zrLANgGxQTdejEBqxn --execute SELECT id, storeId, email, LEFT(passwordHash, 20) as hash_preview, lastLoginAt FROM storeSessions ORDER BY id DESC LIMIT 5",
+  "rows": [
+    {
+      "id": "90001",
+      "storeId": "90002",
+      "email": "thiagorodrigues.152004@gmail.com",
+      "hash_preview": "$2b$10$UhV4svyWCWGA.",
+      "lastLoginAt": "2025-11-22 12:53:58"
+    },
+    {
+      "id": "60001",
+      "storeId": "90001",
+      "email": "thiagor.oliveira.profissional@gmail.com",
+      "hash_preview": "$2b$10$CrlxfUHMkzjAI",
+      "lastLoginAt": "2025-11-22 05:24:26"
+    },
+    {
+      "id": "30001",
+      "storeId": "1",
+      "email": "thiagorodrigues.152004@gmail.com",
+      "hash_preview": "$2b$10$IZw7ckyOnUhGj",
+      "lastLoginAt": "2025-11-22 04:57:57"
+    },
+    {
+      "id": "6",
+      "storeId": "60001",
+      "email": "teste@loja.com",
+      "hash_preview": "$2b$10$Hv1H/lravegnF",
+      "lastLoginAt": "2025-11-22 04:08:35"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tstoreId\temail\thash_preview\tlastLoginAt\n90001\t90002\tthiagorodrigues.152004@gmail.com\t$2b$10$UhV4svyWCWGA.\t2025-11-22 12:53:58\n60001\t90001\tthiagor.oliveira.profissional@gmail.com\t$2b$10$CrlxfUHMkzjAI\t2025-11-22 05:24:26\n30001\t1\tthiagorodrigues.152004@gmail.com\t$2b$10$IZw7ckyOnUhGj\t2025-11-22 04:57:57\n6\t60001\tteste@loja.com\t$2b$10$Hv1H/lravegnF\t2025-11-22 04:08:35\n",
+  "stderr": "",
+  "execution_time_ms": 325
+}

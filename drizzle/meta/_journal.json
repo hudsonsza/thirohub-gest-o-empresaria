@@ -1,0 +1,55 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1763760718076,
+      "tag": "0000_giant_triathlon",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1763760830315,
+      "tag": "0001_unique_bloodscream",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1763760848856,
+      "tag": "0002_nostalgic_lockheed",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1763762006392,
+      "tag": "0003_busy_rocket_racer",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1763765934466,
+      "tag": "0004_omniscient_tyger_tiger",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1763790403217,
+      "tag": "0005_pink_nomad",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1763816316907,
+      "tag": "0006_slow_alex_power",
+      "breakpoints": true
+    }
+  ]
+}

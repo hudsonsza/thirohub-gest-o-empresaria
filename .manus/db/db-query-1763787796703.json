@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `orders` (\n  `id` int AUTO_INCREMENT PRIMARY KEY,\n  `storeId` int NOT NULL,\n  `customerName` varchar(255) NOT NULL,\n  `customerPhone` varchar(20) NOT NULL,\n  `customerAddress` text,\n  `items` json NOT NULL,\n  `totalAmount` int NOT NULL,\n  `couponCode` varchar(50),\n  `affiliateCode` varchar(50),\n  `status` enum('pending', 'confirmed', 'cancelled') NOT NULL DEFAULT 'pending',\n  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP\n)",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rkLhd3unkR3ru9.4580a0f561b7 --database GHR3zrLANgGxQTdejEBqxn --execute CREATE TABLE IF NOT EXISTS `orders` (\n  `id` int AUTO_INCREMENT PRIMARY KEY,\n  `storeId` int NOT NULL,\n  `customerName` varchar(255) NOT NULL,\n  `customerPhone` varchar(20) NOT NULL,\n  `customerAddress` text,\n  `items` json NOT NULL,\n  `totalAmount` int NOT NULL,\n  `couponCode` varchar(50),\n  `affiliateCode` varchar(50),\n  `status` enum('pending', 'confirmed', 'cancelled') NOT NULL DEFAULT 'pending',\n  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP\n)",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 174
+}

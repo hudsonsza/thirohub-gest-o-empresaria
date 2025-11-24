@@ -1,0 +1,22 @@
+{
+  "query": "SELECT s.storeId, st.name, st.slug, s.email \nFROM storeSessions s \nJOIN stores st ON s.storeId = st.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rkLhd3unkR3ru9.4580a0f561b7 --database GHR3zrLANgGxQTdejEBqxn --execute SELECT s.storeId, st.name, st.slug, s.email \nFROM storeSessions s \nJOIN stores st ON s.storeId = st.id;",
+  "rows": [
+    {
+      "storeId": "1",
+      "name": "Thiroperfumes",
+      "slug": "thiroperfumes",
+      "email": "thiagorodrigues.152004@gmail.com"
+    },
+    {
+      "storeId": "30001",
+      "name": "Thiroperfumes",
+      "slug": "thiroperfumes-1",
+      "email": "thiagorodrigues.152004@gmail.com"
+    }
+  ],
+  "messages": [],
+  "stdout": "storeId\tname\tslug\temail\n1\tThiroperfumes\tthiroperfumes\tthiagorodrigues.152004@gmail.com\n30001\tThiroperfumes\tthiroperfumes-1\tthiagorodrigues.152004@gmail.com\n",
+  "stderr": "",
+  "execution_time_ms": 63
+}

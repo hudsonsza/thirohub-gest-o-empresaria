@@ -1,0 +1,20 @@
+{
+  "query": "SELECT * FROM storeSessions ORDER BY lastLoginAt DESC LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rkLhd3unkR3ru9.4580a0f561b7 --database GHR3zrLANgGxQTdejEBqxn --execute SELECT * FROM storeSessions ORDER BY lastLoginAt DESC LIMIT 1;",
+  "rows": [
+    {
+      "id": "6",
+      "storeId": "60001",
+      "email": "teste@loja.com",
+      "passwordHash": "$2b$10$Hv1H/lravegnFu4RL3FbMO4OIhONKOXjoOw921WZbYND.YihB2WDO",
+      "sessionToken": "e422fd659fd609106850605a8d49be6031458ca9c4e2162fa79da5dde338bbdf",
+      "lastLoginAt": "2025-11-22 03:56:58",
+      "createdAt": "2025-11-22 03:50:12",
+      "updatedAt": "2025-11-22 03:56:57"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tstoreId\temail\tpasswordHash\tsessionToken\tlastLoginAt\tcreatedAt\tupdatedAt\n6\t60001\tteste@loja.com\t$2b$10$Hv1H/lravegnFu4RL3FbMO4OIhONKOXjoOw921WZbYND.YihB2WDO\te422fd659fd609106850605a8d49be6031458ca9c4e2162fa79da5dde338bbdf\t2025-11-22 03:56:58\t2025-11-22 03:50:12\t2025-11-22 03:56:57\n",
+  "stderr": "",
+  "execution_time_ms": 54
+}

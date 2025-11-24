@@ -1,0 +1,20 @@
+{
+  "query": "SELECT * FROM storeSessions;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rkLhd3unkR3ru9.4580a0f561b7 --database GHR3zrLANgGxQTdejEBqxn --execute SELECT * FROM storeSessions;",
+  "rows": [
+    {
+      "id": "1",
+      "storeId": "30001",
+      "email": "thiagorodrigues.152004@gmail.com",
+      "passwordHash": "$2b$10$SM8WdJnF9Sss2fhiLJaKrOLr9.o.7pkYjD9N.RFjam03ygnphOqEK",
+      "sessionToken": "09f6fda4cd0b503a630744ce2b08fe5b9f9e5b57692d4f203a6e6a2bbb0c9680",
+      "lastLoginAt": "2025-11-22 03:32:53",
+      "createdAt": "2025-11-22 03:32:52",
+      "updatedAt": "2025-11-22 03:32:52"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tstoreId\temail\tpasswordHash\tsessionToken\tlastLoginAt\tcreatedAt\tupdatedAt\n1\t30001\tthiagorodrigues.152004@gmail.com\t$2b$10$SM8WdJnF9Sss2fhiLJaKrOLr9.o.7pkYjD9N.RFjam03ygnphOqEK\t09f6fda4cd0b503a630744ce2b08fe5b9f9e5b57692d4f203a6e6a2bbb0c9680\t2025-11-22 03:32:53\t2025-11-22 03:32:52\t2025-11-22 03:32:52\n",
+  "stderr": "",
+  "execution_time_ms": 53
+}

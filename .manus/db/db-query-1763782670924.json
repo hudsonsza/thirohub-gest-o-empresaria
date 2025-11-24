@@ -1,0 +1,26 @@
+{
+  "query": "SELECT s.id, s.storeId, s.email, LEFT(s.passwordHash, 30) as hashPreview, st.name as storeName, st.status \nFROM storeSessions s \nJOIN stores st ON s.storeId = st.id \nORDER BY s.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rkLhd3unkR3ru9.4580a0f561b7 --database GHR3zrLANgGxQTdejEBqxn --execute SELECT s.id, s.storeId, s.email, LEFT(s.passwordHash, 30) as hashPreview, st.name as storeName, st.status \nFROM storeSessions s \nJOIN stores st ON s.storeId = st.id \nORDER BY s.id;",
+  "rows": [
+    {
+      "id": "1",
+      "storeId": "30001",
+      "email": "thiagorodrigues.152004@gmail.com",
+      "hashPreview": "$2b$10$SM8WdJnF9Sss2fhiLJaKrOL",
+      "storeName": "Thiroperfumes",
+      "status": "approved"
+    },
+    {
+      "id": "2",
+      "storeId": "1",
+      "email": "thiagorodrigues.152004@gmail.com",
+      "hashPreview": "$2b$10$G4XIRah1hbrY9q8yKYmKNe.",
+      "storeName": "Thiroperfumes",
+      "status": "approved"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tstoreId\temail\thashPreview\tstoreName\tstatus\n1\t30001\tthiagorodrigues.152004@gmail.com\t$2b$10$SM8WdJnF9Sss2fhiLJaKrOL\tThiroperfumes\tapproved\n2\t1\tthiagorodrigues.152004@gmail.com\t$2b$10$G4XIRah1hbrY9q8yKYmKNe.\tThiroperfumes\tapproved\n",
+  "stderr": "",
+  "execution_time_ms": 52
+}

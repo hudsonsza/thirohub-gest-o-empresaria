@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `coupons` (\n  `id` int AUTO_INCREMENT PRIMARY KEY,\n  `storeId` int NOT NULL,\n  `code` varchar(50) NOT NULL,\n  `discountType` enum('percentage', 'fixed') NOT NULL,\n  `discountValue` int NOT NULL,\n  `minPurchase` int NOT NULL DEFAULT 0,\n  `maxUses` int,\n  `usedCount` int NOT NULL DEFAULT 0,\n  `expiresAt` timestamp,\n  `status` enum('active', 'inactive') NOT NULL DEFAULT 'active',\n  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  UNIQUE KEY `store_code` (`storeId`, `code`)\n)",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rkLhd3unkR3ru9.4580a0f561b7 --database GHR3zrLANgGxQTdejEBqxn --execute CREATE TABLE IF NOT EXISTS `coupons` (\n  `id` int AUTO_INCREMENT PRIMARY KEY,\n  `storeId` int NOT NULL,\n  `code` varchar(50) NOT NULL,\n  `discountType` enum('percentage', 'fixed') NOT NULL,\n  `discountValue` int NOT NULL,\n  `minPurchase` int NOT NULL DEFAULT 0,\n  `maxUses` int,\n  `usedCount` int NOT NULL DEFAULT 0,\n  `expiresAt` timestamp,\n  `status` enum('active', 'inactive') NOT NULL DEFAULT 'active',\n  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  UNIQUE KEY `store_code` (`storeId`, `code`)\n)",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 166
+}

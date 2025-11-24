@@ -1,0 +1,31 @@
+{
+  "query": "SELECT id, name, slug, ownerEmail, status FROM stores WHERE status = 'approved' ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rkLhd3unkR3ru9.4580a0f561b7 --database GHR3zrLANgGxQTdejEBqxn --execute SELECT id, name, slug, ownerEmail, status FROM stores WHERE status = 'approved' ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Thiroperfumes",
+      "slug": "thiroperfumes",
+      "ownerEmail": "thiagorodrigues.152004@gmail.com",
+      "status": "approved"
+    },
+    {
+      "id": "30001",
+      "name": "Thiroperfumes",
+      "slug": "thiroperfumes-1",
+      "ownerEmail": "thiagorodrigues.152004@gmail.com",
+      "status": "approved"
+    },
+    {
+      "id": "60001",
+      "name": "Loja Teste 1",
+      "slug": "loja-teste-1",
+      "ownerEmail": "teste@loja.com",
+      "status": "approved"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tslug\townerEmail\tstatus\n1\tThiroperfumes\tthiroperfumes\tthiagorodrigues.152004@gmail.com\tapproved\n30001\tThiroperfumes\tthiroperfumes-1\tthiagorodrigues.152004@gmail.com\tapproved\n60001\tLoja Teste 1\tloja-teste-1\tteste@loja.com\tapproved\n",
+  "stderr": "",
+  "execution_time_ms": 63
+}

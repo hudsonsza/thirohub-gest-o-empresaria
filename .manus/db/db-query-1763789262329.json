@@ -1,0 +1,32 @@
+{
+  "query": "SELECT * FROM stores WHERE slug = 'thirolojas'",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rkLhd3unkR3ru9.4580a0f561b7 --database GHR3zrLANgGxQTdejEBqxn --execute SELECT * FROM stores WHERE slug = 'thirolojas'",
+  "rows": [
+    {
+      "id": "90001",
+      "userId": "1",
+      "name": "Thirolojas",
+      "slug": "thirolojas",
+      "ownerEmail": "thiagor.oliveira.profissional@gmail.com",
+      "ownerName": "thiago Rodrigues",
+      "ownerWhatsapp": "67984766796",
+      "cpfCnpj": "08791270405",
+      "category": "bebidas",
+      "plan": "platinum",
+      "logoUrl": "NULL",
+      "primaryColor": "#0F766E",
+      "secondaryColor": "#F59E0B",
+      "whatsapp": "6784766796",
+      "status": "pending",
+      "rejectionReason": "NULL",
+      "trialEndsAt": "2025-11-29 05:24:09",
+      "accessCode": "9paxyhitpv9c13zc9eujj",
+      "createdAt": "2025-11-22 05:24:08",
+      "updatedAt": "2025-11-22 05:24:08"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tuserId\tname\tslug\townerEmail\townerName\townerWhatsapp\tcpfCnpj\tcategory\tplan\tlogoUrl\tprimaryColor\tsecondaryColor\twhatsapp\tstatus\trejectionReason\ttrialEndsAt\taccessCode\tcreatedAt\tupdatedAt\n90001\t1\tThirolojas\tthirolojas\tthiagor.oliveira.profissional@gmail.com\tthiago Rodrigues\t67984766796\t08791270405\tbebidas\tplatinum\tNULL\t#0F766E\t#F59E0B\t6784766796\tpending\tNULL\t2025-11-29 05:24:09\t9paxyhitpv9c13zc9eujj\t2025-11-22 05:24:08\t2025-11-22 05:24:08\n",
+  "stderr": "",
+  "execution_time_ms": 54
+}

@@ -1,0 +1,9 @@
+{
+  "query": "DROP TABLE IF EXISTS sales, affiliates, trackingLinks, coupons, orders, products, stores, users;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2rkLhd3unkR3ru9.4580a0f561b7 --database GHR3zrLANgGxQTdejEBqxn --execute DROP TABLE IF EXISTS sales, affiliates, trackingLinks, coupons, orders, products, stores, users;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1589
+}
