@@ -87,26 +87,53 @@ declare global {
 }
 
 const API_KEY = import.meta.env.VITE_FRONTEND_FORGE_API_KEY;
-const FORGE_BASE_URL =
-  import.meta.env.VITE_FRONTEND_FORGE_API_URL ||
-  "https://forge.butterfly-effect.dev";
-const MAPS_PROXY_URL = `${FORGE_BASE_URL}/v1/maps/proxy`;
+const MAP_PROXY_BASE_URLS = [
+  import.meta.env.VITE_FRONTEND_FORGE_API_URL?.trim(),
+  "https://proxy.thiro.tech",
+  "https://forge.butterfly-effect.dev",
+].filter(Boolean) as string[];
 
-function loadMapScript() {
-  return new Promise(resolve => {
+function createMapsProxyUrl(baseUrl: string) {
+  const normalizedBase = baseUrl.replace(/\/+$, "");
+  return `${normalizedBase}/v1/maps/proxy`;
+}
+
+function loadScriptFromProxy(proxyUrl: string) {
+  const scriptUrl = `${proxyUrl}/maps/api/js?key=${API_KEY}&v=weekly&libraries=marker,places,geocoding,geometry`;
+
+  return new Promise<void>((resolve, reject) => {
     const script = document.createElement("script");
-    script.src = `${MAPS_PROXY_URL}/maps/api/js?key=${API_KEY}&v=weekly&libraries=marker,places,geocoding,geometry`;
+    script.src = scriptUrl;
     script.async = true;
     script.crossOrigin = "anonymous";
     script.onload = () => {
-      resolve(null);
-      script.remove(); // Clean up immediately
+      resolve();
+      script.remove();
     };
     script.onerror = () => {
-      console.error("Failed to load Google Maps script");
+      script.remove();
+      reject(new Error(`Failed to load Google Maps script from ${proxyUrl}`));
     };
     document.head.appendChild(script);
   });
+}
+
+async function loadMapScript() {
+  let lastError: unknown = null;
+  for (const baseUrl of MAP_PROXY_BASE_URLS) {
+    try {
+      await loadScriptFromProxy(createMapsProxyUrl(baseUrl));
+      return;
+    } catch (error) {
+      lastError = error;
+      console.warn(`Failed to load Google Maps script from ${baseUrl}`, error);
+    }
+  }
+
+  console.error("Failed to load Google Maps script from available proxies", lastError);
+  throw lastError instanceof Error
+    ? lastError
+    : new Error("Unable to load Google Maps script from configured proxies");
 }
 
 interface MapViewProps {

@@ -19,6 +19,7 @@ import Dashboard from "./pages/Dashboard";
 import NewStore from "./pages/NewStore";
 import StoreLogin from "./pages/StoreLogin";
 import AdminLogin from "./pages/AdminLogin";
+import Login from "./pages/Login";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -27,6 +28,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path="/cadastrar" component={PublicRegister} />
       <Route path="/loja/:slug" component={PublicStore} />
+      <Route path={"/login"} component={Login} />
       <Route path={"/admin/login"} component={AdminLogin} />
       <Route path="/admin/:storeId" component={StoreDashboard} />
       <Route path="/admin/:storeId/products" component={StoreProducts} />

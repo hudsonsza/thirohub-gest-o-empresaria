@@ -20,18 +20,35 @@ export const BRAND_COLORS = {
   secondaryHover: "#D97706",
 };
 
-// OAuth - Generate login URL at runtime so redirect URI reflects the current origin
-export const getLoginUrl = () => {
-  const oauthPortalUrl = import.meta.env.VITE_OAUTH_PORTAL_URL;
-  const appId = import.meta.env.VITE_APP_ID;
-  const redirectUri = `${window.location.origin}/api/oauth/callback`;
-  const state = btoa(redirectUri);
+// // OAuth - Generate login URL at runtime so redirect URI reflects the current origin
+// export const getLoginUrl = () => {
+//   const oauthPortalUrl = import.meta.env.VITE_OAUTH_PORTAL_URL;
+//   const appId = import.meta.env.VITE_APP_ID;
+//   if (!oauthPortalUrl || !appId) {
+//     console.error("Missing OAuth configuration: set VITE_OAUTH_PORTAL_URL and VITE_APP_ID");
+//     return "#";
+//   }
+//   const redirectUri = `${window.location.origin}/api/oauth/callback`;
+//   const state = btoa(redirectUri);
 
-  const url = new URL(`${oauthPortalUrl}/app-auth`);
-  url.searchParams.set("appId", appId);
-  url.searchParams.set("redirectUri", redirectUri);
-  url.searchParams.set("state", state);
-  url.searchParams.set("type", "signIn");
+//   const normalizedBase = oauthPortalUrl.endsWith("/")
+//     ? oauthPortalUrl.slice(0, -1)
+//     : oauthPortalUrl;
+//   const url = new URL(`${normalizedBase}/app-auth`);
+//   url.searchParams.set("appId", appId);
+//   url.searchParams.set("redirectUri", redirectUri);
+//   url.searchParams.set("state", state);
+//   url.searchParams.set("type", "signIn");
+
+//   return url.toString();
+// };
+
+// Login local sem OAuth (rota interna da aplicação)
+export const getLoginUrl = () => {
+  const loginPath = "/login";
+
+  // Garante que funcione em qualquer ambiente (local, staging, prod)
+  const url = new URL(loginPath, window.location.origin);
 
   return url.toString();
 };
