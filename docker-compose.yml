@@ -4,8 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: dev
-    command: >-
-      sh -c "pnpm install --frozen-lockfile && pnpm dev"
+    command: start.sh
     env_file:
       - .env
     environment:
@@ -13,9 +12,25 @@ services:
       DATABASE_URL: mysql://thiro:thiro@db:3306/thiro
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"
-    ports:
-      - "3000:3000"
     expose:
       - "3000"
     volumes:
       - .:/app
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: thiro
+      MYSQL_USER: thiro
+      MYSQL_PASSWORD: thiro
+      MYSQL_ROOT_PASSWORD: root
+    command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
+    expose:
+      - "3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
