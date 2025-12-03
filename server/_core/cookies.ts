@@ -39,14 +39,10 @@ export function getSessionCookieOptions(
   //       ? hostname
   //       : undefined;
 
-  const secure = isSecureRequest(req);
-
   return {
     httpOnly: true,
     path: "/",
-    // Em ambiente seguro (HTTPS / proxy), usamos SameSite=None para funcionar em iframes/domínios cruzados.
-    // Em desenvolvimento/local (sem HTTPS), usamos Lax para o cookie não ser bloqueado pelo navegador.
-    sameSite: secure ? "none" : "lax",
-    secure,
+    sameSite: "none",
+    secure: isSecureRequest(req),
   };
 }

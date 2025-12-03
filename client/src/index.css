@@ -174,4 +174,6 @@
       max-width: 1280px; /* Standard content width */
     }
   }
+
+  #manus-previewer-root { display: none;}
 }
