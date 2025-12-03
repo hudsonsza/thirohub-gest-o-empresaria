@@ -531,31 +531,29 @@ export const appRouter = router({
         return { success: true, orderNumber };
       }),
 
-    list: protectedProcedure
+    list: storeOwnerProcedure
       .input(z.object({ storeId: z.number() }))
       .query(async ({ ctx, input }) => {
-        const store = await db.getStoreById(input.storeId);
-        if (!store || store.userId !== ctx.user.id) {
+        if (input.storeId !== ctx.storeOwner.storeId) {
           throw new TRPCError({ code: 'FORBIDDEN', message: 'Acesso negado' });
         }
         return await db.getOrdersByStoreId(input.storeId);
       }),
 
-    getById: protectedProcedure
+    getById: storeOwnerProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ ctx, input }) => {
         const order = await db.getOrderById(input.id);
         if (!order) {
           throw new TRPCError({ code: 'NOT_FOUND', message: 'Pedido não encontrado' });
         }
-        const store = await db.getStoreById(order.storeId);
-        if (!store || store.userId !== ctx.user.id) {
+        if (order.storeId !== ctx.storeOwner.storeId) {
           throw new TRPCError({ code: 'FORBIDDEN', message: 'Acesso negado' });
         }
         return order;
       }),
 
-    updateStatus: protectedProcedure
+    updateStatus: storeOwnerProcedure
       .input(z.object({
         id: z.number(),
         status: z.enum(["new", "confirmed", "shipped", "delivered", "cancelled"]),
@@ -565,8 +563,7 @@ export const appRouter = router({
         if (!order) {
           throw new TRPCError({ code: 'NOT_FOUND', message: 'Pedido não encontrado' });
         }
-        const store = await db.getStoreById(order.storeId);
-        if (!store || store.userId !== ctx.user.id) {
+        if (order.storeId !== ctx.storeOwner.storeId) {
           throw new TRPCError({ code: 'FORBIDDEN', message: 'Acesso negado' });
         }
         await db.updateOrder(input.id, { status: input.status });

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { publicProcedure, router } from "./_core/trpc";
+import { getSessionCookieOptions } from "./_core/cookies";
 import * as storeAuth from "./storeAuth";
 import * as db from "./db";
 import { TRPCError } from "@trpc/server";
@@ -40,15 +41,12 @@ export const storeAuthRouter = router({
         });
       }
 
-      // Define cookie de sessão
-      const cookieOptions = {
-        httpOnly: true,
-        secure: true, // Sempre true pois o ambiente usa HTTPS
-        sameSite: 'lax' as const,
+      // Define cookie de sessão (compatível com dev e produção)
+      const baseOptions = getSessionCookieOptions(ctx.req);
+      ctx.res.cookie(STORE_SESSION_COOKIE, result.sessionToken, {
+        ...baseOptions,
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 dias
-        path: '/',
-      };
-      ctx.res.cookie(STORE_SESSION_COOKIE, result.sessionToken, cookieOptions);
+      });
 
       return { 
         success: true,
@@ -90,15 +88,12 @@ export const storeAuthRouter = router({
         });
       }
 
-      // Define cookie de sessão
-      const cookieOptions = {
-        httpOnly: true,
-        secure: true, // Sempre true pois o ambiente usa HTTPS
-        sameSite: 'lax' as const,
+      // Define cookie de sessão (compatível com dev e produção)
+      const baseOptions = getSessionCookieOptions(ctx.req);
+      ctx.res.cookie(STORE_SESSION_COOKIE, result.sessionToken, {
+        ...baseOptions,
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 dias
-        path: '/',
-      };
-      ctx.res.cookie(STORE_SESSION_COOKIE, result.sessionToken, cookieOptions);
+      });
 
       return { 
         success: true,
