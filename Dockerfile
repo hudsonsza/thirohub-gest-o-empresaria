@@ -1,39 +1,25 @@
-# syntax=docker/dockerfile:1
+FROM node:20-bullseye
 
-FROM node:20-bullseye AS base
 WORKDIR /app
+
 ENV PNPM_HOME=/pnpm
 ENV PATH=$PNPM_HOME:$PATH
-RUN corepack enable && corepack prepare pnpm@10.4.1 --activate
 
-FROM base AS deps
+# pnpm + mysql client para desenvolvimento
+RUN corepack enable && corepack prepare pnpm@10.4.1 --activate \
+  && apt-get update && apt-get install -y --no-install-recommends \
+    default-mysql-client \
+  && rm -rf /var/lib/apt/lists/*
+
+# Instala dependências (útil para cache de build)
 COPY package.json pnpm-lock.yaml ./
 COPY patches ./patches
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile || pnpm install
 
-FROM base AS dev
-COPY package.json pnpm-lock.yaml ./
-COPY patches ./patches
-RUN pnpm install
-CMD ["pnpm", "dev"]
-
-FROM base AS build
-COPY --from=deps /app/node_modules ./node_modules
+# Código da aplicação (em dev normalmente será sobrescrito pelo volume)
 COPY . .
-RUN pnpm build
 
-FROM base AS prod-deps
-COPY package.json pnpm-lock.yaml ./
-COPY patches ./patches
-RUN pnpm install --frozen-lockfile
-
-FROM node:20-bullseye-slim AS runner
-WORKDIR /app
-ENV NODE_ENV=production
-COPY --from=prod-deps /app/node_modules ./node_modules
-COPY --from=build /app/dist ./dist
-COPY package.json ./
-
-FROM runner AS production
 EXPOSE 3000
-CMD ["node", "dist/index.js"]
+
+# Comando padrão de desenvolvimento
+CMD ["bash", "start.sh"]

@@ -4,10 +4,17 @@ import { createServer } from "http";
 import net from "net";
 import cookieParser from "cookie-parser";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
-import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+
+process.on("uncaughtException", error => {
+  console.error("[uncaughtException]", error);
+});
+
+process.on("unhandledRejection", reason => {
+  console.error("[unhandledRejection]", reason);
+});
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -36,8 +43,35 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // Configure cookie parser for session management
   app.use(cookieParser());
+  app.use((req, res, next) => {
+    const start = process.hrtime.bigint();
+    const requestId = Math.random().toString(36).slice(2, 8);
+
+    console.log(
+      "[request]",
+      requestId,
+      new Date().toISOString(),
+      req.method,
+      req.originalUrl
+    );
+
+    res.on("finish", () => {
+      const end = process.hrtime.bigint();
+      const durationMs = Number(end - start) / 1_000_000;
+
+      console.log(
+        "[response]",
+        requestId,
+        res.statusCode,
+        req.method,
+        req.originalUrl,
+        `${durationMs.toFixed(1)}ms`
+      );
+    });
+
+    next();
+  });
   // OAuth callback under /api/oauth/callback
-  registerOAuthRoutes(app);
   // tRPC API
   app.use(
     "/api/trpc",
@@ -52,6 +86,21 @@ async function startServer() {
   } else {
     serveStatic(app);
   }
+
+  app.use((err: unknown, req: express.Request, res: express.Response, next: express.NextFunction) => {
+    console.error(
+      "[express-error]",
+      req.method,
+      req.originalUrl,
+      err
+    );
+
+    if (res.headersSent) {
+      return next(err);
+    }
+
+    res.status(500).json({ error: "Internal server error" });
+  });
 
   const preferredPort = parseInt(process.env.PORT || "3000");
   const port = await findAvailablePort(preferredPort);

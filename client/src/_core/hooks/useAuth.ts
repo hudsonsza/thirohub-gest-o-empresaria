@@ -13,14 +13,15 @@ export function useAuth(options?: UseAuthOptions) {
     options ?? {};
   const utils = trpc.useUtils();
 
-  const meQuery = trpc.auth.me.useQuery(undefined, {
+  // Usa autenticação baseada em banco de dados (adminAuth)
+  const meQuery = trpc.adminAuth.me.useQuery(undefined, {
     retry: false,
     refetchOnWindowFocus: false,
   });
 
-  const logoutMutation = trpc.auth.logout.useMutation({
+  const logoutMutation = trpc.adminAuth.logout.useMutation({
     onSuccess: () => {
-      utils.auth.me.setData(undefined, null);
+      utils.adminAuth.me.setData(undefined, null);
     },
   });
 
@@ -36,8 +37,8 @@ export function useAuth(options?: UseAuthOptions) {
       }
       throw error;
     } finally {
-      utils.auth.me.setData(undefined, null);
-      await utils.auth.me.invalidate();
+      utils.adminAuth.me.setData(undefined, null);
+      await utils.adminAuth.me.invalidate();
     }
   }, [logoutMutation, utils]);
 

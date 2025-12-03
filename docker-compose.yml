@@ -7,6 +7,7 @@ services:
     # and its default command: `node dist/index.js`
     env_file:
       - .env
+    command: ./start.sh
     environment:
       NODE_ENV: production
       DATABASE_URL: mysql://thiro:thiro@db:3306/thiro
@@ -18,6 +19,9 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    working_dir: /app
+    volumes:
+      - ./:/app
 
   db:
     image: mysql:8.0
@@ -25,7 +29,7 @@ services:
       MYSQL_DATABASE: thiro
       MYSQL_USER: thiro
       MYSQL_PASSWORD: thiro
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root]
     command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
     expose:
       - "3306"
