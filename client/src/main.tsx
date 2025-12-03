@@ -17,8 +17,8 @@ const redirectToLoginIfUnauthorized = (error: unknown) => {
   const isUnauthorized = error.message === UNAUTHED_ERR_MSG;
 
   if (!isUnauthorized) return;
-
-  window.location.href = getLoginUrl();
+  // Não redirecionar automaticamente em caso de UNAUTHORIZED.
+  // O app apenas registra o erro no console via os listeners abaixo.
 };
 
 queryClient.getQueryCache().subscribe(event => {
