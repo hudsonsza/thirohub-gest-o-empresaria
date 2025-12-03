@@ -1,15 +1,10 @@
 services:
-  app:
+  webserver:
     build:
       context: .
       dockerfile: Dockerfile
     # Use production image (last stage in Dockerfile)
     # and its default command: `node dist/index.js`
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.webserver.rule=Host(`app.thiro.tech`)"
-      - "traefik.http.services.webserver.loadbalancer.server.port=3000"
-      - "traefik.http.routers.webserver.entrypoints=websecure"
     env_file:
       - .env
     environment:
