@@ -3,12 +3,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: dev
-    command: start.sh
+    # Use production image (last stage in Dockerfile)
+    # and its default command: `node dist/index.js`
     env_file:
       - .env
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
       DATABASE_URL: mysql://thiro:thiro@db:3306/thiro
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"
